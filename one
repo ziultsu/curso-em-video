@@ -1,5 +1,6 @@
 from tkinter import *
-open_window = Tk()
-open_window.geometry("500x400")
-Label(open_window, text='hello, world').pack()
-open_window.mainloop()
+
+open_window = Tk()  #creates a window
+open_window.geometry("500x400")  #resize the created window
+Label(open_window, text='hello, world').pack()  #"text=" allows you to write in the created window
+open_window.mainloop()  #executes created the window
