@@ -1,0 +1,5 @@
+from tkinter import *
+open_window = Tk()
+open_window.geometry("500x400")
+Label(open_window, text='hello, world').pack()
+open_window.mainloop()
