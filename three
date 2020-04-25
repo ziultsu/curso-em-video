@@ -1,0 +1,19 @@
+from tkinter import *
+
+
+def sum_numbers():
+  result = int(first_number.get()) + int(second_number.get())
+  show_sum['text'] = f'{int(first_number.get())} + {int(second_number.get())} = {result}'
+
+
+window = Tk()
+first_number = Entry(window)
+first_number.place(x=100, y=100, width=100)
+second_number = Entry(window)
+second_number.place(x=100, y=150, width=100)
+start = Button(window, text='show the sum', width=10, command=sum_numbers)
+start.place(x=120, y=200)
+show_sum = Label(window)
+show_sum.place(x=120, y=250)
+window.geometry('600x500+200+100')
+window.mainloop()
