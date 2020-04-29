@@ -1,0 +1,23 @@
+from tkinter import *
+
+
+def conversion():
+    try:
+        result = int(celsius_input.get())
+        result = ((result - 32) * (5/9))
+        show_result = Label(root, text=f'fahrenheit: {result}')
+        show_result.place(x=50, y=120)
+    except ValueError:
+        show_result = Label(root, text=f'error')
+        show_result.place(x=50, y=120)
+
+
+root = Tk()
+root.geometry('300x200+200+100')
+explain_celsius = Label(root, text='type the celsius: ')
+explain_celsius.place(x=10, y=48)
+celsius_input = Entry()
+celsius_input.place(x=100, y=50)
+button = Button(root, text='done', bd=5, command=conversion)
+button.place(x=240, y=72)
+root.mainloop()
