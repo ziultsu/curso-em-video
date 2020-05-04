@@ -1,0 +1,19 @@
+from tkinter import *
+
+
+def operations():
+    num = int(number.get())  # get value given by the user
+    result = Label(window, text=f'double {num * 2}\n'  # put operations into the screen
+                                f'triple {num * 3}\n'
+                                f'square root {num ** (1/2)}')
+    result.place(x=100, y=150)
+
+
+window = Tk()
+window.geometry('500x400+300+100')
+number = Entry()
+number.place(x=100, y=100)
+instruction = Label(window, text='insert a number below')
+instruction.place(x=100, y=70)
+Button(window, text='result', width=10, bd=3, command=operations).place(x=235, y=96)
+window.mainloop()
