@@ -1,0 +1,21 @@
+from tkinter import *
+
+root = Tk()
+
+
+def previous_next():
+    num = int(received_number.get())  # get the input of the user and transforms in a integer
+    output = Label(root, text=f'the previous one is: {num - 1}\n'
+                   f'the next one is {num + 1}')
+    output.place(x=90, y=120)
+
+
+root.geometry('500x400+500+100')
+instructions = Label(root, text='write here a number :')  # write in the screen
+instructions.place(x=30, y=50)
+received_number = Entry()  # add an input for the user
+received_number.place(x=150, y=51)
+enter_number = Button(root, text='done', command=previous_next, bd=5)  # add a button that show the command
+enter_number.place(x=90, y=90, width=70)
+
+root.mainloop()
