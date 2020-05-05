@@ -1,0 +1,32 @@
+from tkinter import *
+
+interface = Tk()
+
+
+def calculator():
+    # try to convert the values and, then calculate the average result
+    try:
+        average_grade = (float(first_grade.get()) + float(second_grade.get())) / 2
+        result = Label(interface, text=f'{average_grade}', bg='green', fg='white')
+        result.place(x=80, y=170)
+    # when the user type a non-numeric digit, an exception is raised
+    except Exception as error:
+        result = Label(interface, text=f'{first_grade.get()} and {second_grade.get()} are not valid\n'
+                                       f'->{error}<-', bg='red')
+        result.place(x=260, y=70)
+
+
+interface.geometry('500x350+600+100')
+first_grade_instruction = Label(interface, text='type the first grade :')
+first_grade_instruction.place(x=30, y=50)
+first_grade = Entry(width=10)
+# space to the first grade
+first_grade.place(x=145, y=52)
+second_grade_instruction = Label(interface, text='type the second grade :')
+second_grade_instruction.place(x=30, y=92)
+second_grade = Entry(width=10)
+# space to the second grade
+second_grade.place(x=160, y=93)
+Button(interface, text='done', bd=3, width=10, command=calculator).place(x=50, y=120)
+# insert a button in the screen that calls the function to calculate the result
+interface.mainloop()
