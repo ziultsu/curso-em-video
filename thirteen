@@ -1,0 +1,27 @@
+from tkinter import *
+
+
+def salary_changer():
+    try:
+        new_salary = (float(salary.get()) + (float(salary.get()) * (float(raise_percent.get()) / 100)))
+        show_new_salary = Label(window, text=f'old salary : {salary.get()}\n'
+                                             f'raise : {raise_percent.get()}%\n'
+                                             f'new salary : {new_salary}', bg='green', fg='white')
+        show_new_salary.place(x=50, y=190)
+    except Exception as error:
+        show_error = Label(window, text=f'invalid information\n-->{error}<--', bg='red', fg='black')
+        show_error.place(x=240, y=140)
+
+
+window = Tk()
+window.geometry('500x400+500+100')
+salary_explain = Label(window, text='type the numbers of the employee\'s salary:  R$')
+salary_explain.place(x=30, y=40)
+raise_percent_explain = Label(window, text='type the percentage of raise.Just numbers:   %')
+raise_percent_explain.place(x=30, y=80)
+raise_percent = Entry()
+raise_percent.place(x=285, y=80)
+salary = Entry()
+salary.place(x=285, y=40)
+Button(window, text='done', width=8, bd=3, command=salary_changer).place(x=100, y=120)
+window.mainloop()
