@@ -70,7 +70,6 @@ def save_creation():
 window = Tk()
 scroll = Scrollbar(window)
 scroll.pack(side=RIGHT, fill=Y)
-window.iconbitmap('c:/Users/Matheus/vingadores.ico')
 window.title('gerenciador gerenciado')
 view_text = Label(text='click here to see previous calls -->')
 view_text.place(x=10, y=15)
