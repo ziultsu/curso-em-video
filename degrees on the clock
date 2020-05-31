@@ -1,0 +1,27 @@
+from uteis import colors
+while True:
+    hour = int(input('type the hour: '))
+    if 1 > hour < 12:
+        print(colors.red('you have to type a number between 1 and 12'))
+    else:
+        minute = int(input('type the minute: '))
+        if 0 > minute < 59:
+            print(colors.red('you have to type a number between 0 and 59'))
+        else:
+            break
+minutes_degree = minute * 6
+hours_degree = (hour * 30) + (30 * minute/60)
+if minutes_degree < hours_degree:
+    first_side = 360 - (hours_degree - minutes_degree)
+    second_side = 360 - first_side
+    if first_side < second_side:
+        print(f'''the longest side: {colors.cyan(second_side)}\nthe shortest side {colors.green(first_side)}''')
+    elif first_side > second_side:
+        print(f'''the longest side: {colors.cyan(first_side)}\nthe shortest side {colors.green(second_side)}''')
+elif minutes_degree > hours_degree:
+    first_side = 360 - (minutes_degree - hours_degree)
+    second_side = 360 - first_side
+    if first_side < second_side:
+        print(f'''the longest side: {colors.cyan(second_side)}\nthe shortest side {colors.green(first_side)}''')
+    elif first_side > second_side:
+        print(f'''the longest side: {colors.cyan(first_side)}\nthe shortest side {colors.green(second_side)}''')
