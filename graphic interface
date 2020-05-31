@@ -1,0 +1,84 @@
+from tkinter import *
+from datetime import datetime
+from random import random
+
+
+def visualization():
+    handling_file = open('banco de dados.txt', 'r')
+    showing_file = Label(window, text=handling_file.read())
+    showing_file.place(x=365, y=10)
+    handling_file.close()
+
+
+def creating_sit():
+    global choice_situation
+    choice_situation = StringVar()
+    Radiobutton(window, text='incident', variable=choice_situation, value='incident').place(x=15, y=90)
+    Radiobutton(window, text='requisition', variable=choice_situation, value='requisition').place(x=15, y=120)
+    done = Button(window, text='done', borderwidth=3, command=creating_prio)
+    done.place(x=15, y=150)
+
+
+def creating_prio():
+    global choice_priority
+    choice_priority = StringVar()
+    high = Radiobutton(window, text='high level of priority', value='high level', variable=choice_priority)
+    high.place(x=15, y=190)
+    med = Radiobutton(window, text='medium level of priority', value='medium level', variable=choice_priority)
+    med.place(x=15, y=210)
+    low = Radiobutton(window, text='low level of priority', value='low level', variable=choice_priority)
+    low.place(x=15, y=230)
+    done = Button(borderwidth=3, text='done', command=creating_desc)
+    done.place(x=15, y=260)
+
+
+def creating_desc():
+    global descr
+    explan_descr = Label(window, text='give us a short description below')
+    explan_descr.place(x=15, y=290)
+    descr = Entry(width=29, borderwidth=5)
+    descr.place(x=15, y=310)
+    done_descr = Button(bd=5, text='done', width=9, command=creating_pho)
+    done_descr.place(x=210, y=302)
+
+
+def creating_pho():
+    global phone_num
+    global done_phone
+    explain_phone = Label(window, text='put your phone number')
+    explain_phone.place(x=15, y=335)
+    phone_num = Entry(bd=5, width=29)
+    phone_num.place(x=15, y=360)
+    done_phone = Button(bd=5, text='done', width=9, command=save_creation)
+    done_phone.place(x=210, y=353)
+
+
+def save_creation():
+    done_phone['state'] = DISABLED
+    thanks_user = Label(window, text='thanks, user, for the feedback')
+    thanks_user.place(x=310, y=353)
+    addict_data = open('banco de dados.txt', 'a')
+    addict_data.write(f'password {round(random(), 8)}\n'
+                      f'day/month/year: {datetime.today().day}/{datetime.today().month}/{datetime.today().year}\n'
+                      f'situation: {choice_situation.get()}\n'
+                      f'priority: {choice_priority.get()}\n'
+                      f'description: {descr.get()}\n'
+                      f'phone number: {phone_num.get()}\n')
+    addict_data.close()
+
+
+window = Tk()
+scroll = Scrollbar(window)
+scroll.pack(side=RIGHT, fill=Y)
+window.iconbitmap('c:/Users/Matheus/vingadores.ico')
+window.title('gerenciador gerenciado')
+view_text = Label(text='click here to see previous calls -->')
+view_text.place(x=10, y=15)
+create_text = Label(text='click here to create a new call -->')
+create_text.place(x=10, y=55)
+view = Button(window, text='Previous calls', borderwidth=3, width=19, command=visualization)
+view.place(x=200, y=10)
+create = Button(window, text='create call', borderwidth=3, width=19, command=creating_sit)
+create.place(x=200 , y=50)
+window.geometry('550x400+200+100')
+window.mainloop()
