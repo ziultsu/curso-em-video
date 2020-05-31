@@ -1,0 +1,25 @@
+from random import randint
+v = 0
+while True:
+    x = randint(1, 20)
+    y = str(input('type [p] for even or [o] for odd ')).strip().lower()
+    z = int(input('type an entire number '))
+    if y in 'Pp':
+        if (x + z) % 2 == 0:
+            print(f'i picked {x}...{x} + {z} = {x + z}.It is even')
+            print('you won')
+            v += 1
+        else:
+            print(f'i picked {x}...{x} + {z} = {x + z}.It is odd')
+            print('you lost')
+            break
+    elif y in 'Oo':
+        if (x + z) % 2 != 0:
+            print(f'i picked {x}...{x} + {z} = {x + z}.It is odd')
+            print('you won')
+            v += 1
+        else:
+            print(f'i picked {x}...{x} + {z} = {x + z}.It is even')
+            print('you lost')
+            break
+print(f'you were the winner {v} time(s)')
