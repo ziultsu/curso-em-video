@@ -1,0 +1,34 @@
+from random import randint
+from uteis import colors
+
+
+def craps():
+    pi = 0
+    cps = 0
+    while True:
+        begin = str(input('Type [b] to begin ')).strip().lower()
+        if begin in 'b':
+            natural = (7, 10)
+            crap = (2, 3, 5)
+            point = (4, 8, 6, 9, 11, 12)
+            dad = randint(1, 6)
+            dado = randint(1, 6)
+            result = dad + dado
+            if result in natural:
+                return print('you got', colors.green('NATURAL'))
+            else:
+                if result in point:
+                    pi += 1
+                    print('you got', colors.blue(f'{pi} point(s)'))
+                    if pi == 3:
+                        return print(colors.blue('THREE POINTS') + '.You won')
+                if result in crap:
+                    cps += 1
+                    print(f'you got {colors.yellow(cps)} ' + colors.red('CRAPS'))
+                    if cps == 2:
+                        return print(colors.red('You Lost'))
+        else:
+            print(colors.red('you cannot begin, rather than you type [b]'))
+
+
+craps()
