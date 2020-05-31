@@ -1,0 +1,44 @@
+from time import sleep
+from uteis import colors
+from random import choice
+print('pick up one of the numbers below:\n'
+    f'[ 0 ] {colors.grey("rock")}\n'
+    f'[ 1 ] paper\n'
+    f'[ 2 ] {colors.magenta("scissor")}')
+while True:
+    choose = input('type the chosen number: ').lstrip().rstrip()
+    if choose in '012':
+        computer = choice([0, 1, 2])
+        choose = int(choose)
+        play = {0: colors.grey('rock'), 1: 'paper', 2: colors.magenta('scissor')}
+        sleep(0.5)
+        print(colors.yellow('JO!!!'))
+        sleep(0.5)
+        print(colors.red('KEN!!!'))
+        sleep(0.5)
+        print(colors.cyan('PO!!!'))
+        print(f'the computer choose {play[computer]} and you, {play[choose]}')
+        if choose != computer:
+            if choose == 0 and computer == 1:
+                print(colors.magenta('computer wins'))
+                break
+            elif choose == 0 and computer == 2:
+                print(colors.green('you won!!'))
+                break
+            elif choose == 1 and computer == 0:
+                print(colors.green('you won!!'))
+                break
+            elif choose == 1 and computer == 2:
+                print(colors.magenta('computer wins'))
+                break
+            elif choose == 2 and computer == 0:
+                print(colors.magenta('computer wins'))
+                break
+            elif choose == 2 and computer == 1:
+                print(colors.green('you won'))
+                break
+        else:
+            print(colors.blue('*MATCH*'))
+            break
+    else:
+        print(colors.red('type a number between the ones above'))
