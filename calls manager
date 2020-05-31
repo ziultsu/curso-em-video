@@ -1,0 +1,75 @@
+from time import sleep
+print('digite um dos numeros abaixo de acordo com sua escolha:\n'
+    '1 -visualizar chamados anteriores\n'
+    '2 -criar novo chamado(se nao houver um banco de dados, ele sera criado)\n'
+    '3 -sair do sistema')
+while True:
+    sleep(0.5)
+    escolha = int(input('insira aqui um dos numeros acima: '))
+    if escolha == 1:
+        print('=-'*10)
+        print(f'opcao {escolha}'.center(20))
+        print('=-'*10)
+        sleep(1)
+        arquivo_aberto = open('banco de dados.txt', 'rt+')
+        print(arquivo_aberto.read())
+        arquivo_aberto.close()
+    elif escolha == 2:
+        print('=-'*10)
+        print(f'opcao {escolha}'.center(20))
+        print('=-'*10)
+        sleep(1)
+        abrir = open('banco de dados.txt', 'a+')
+        print('escolha um dos tipos abaixo:\n'
+              '1 -incidente\n'
+              '2 -requisicao')
+        inc_ou_req_dict = {1: 'incidente', 2: 'requisicao'}
+        inc_ou_req = input('insira um dos numeros acima: ').strip()
+        if inc_ou_req == "1" or inc_ou_req == "2":
+            inc_ou_req = int(inc_ou_req)
+            print('escolha um dos niveis que melhor represente a urgencia:\n'
+                  '1 - baixa prioridade\n'
+                  '2 - media prioridade\n'
+                  '3 - alta prioridade')
+            urgen_dict = {1: 'baixa prioridade', 2: 'media prioridade', 3: 'alta prioridade'}
+            urgen = input('insira um dos numeros acima: ').strip()
+            if urgen == "1" or urgen == "2" or urgen == "3":
+                urgen = int(urgen)
+                sleep(0.5)
+                descricao = input('quase terminando, descreva o problema: ').strip()
+                if descricao != '':
+                    print('como ultimo passo, deixe seu numero de telefone ou e-mail.\n'
+                          'Pelo menos um dos dois precisa ser preenchido:')
+                    sleep(0.5)
+                    telef = input('digite seu telefone(apenas numeros).'
+                            'Se prefere usa o email, aperte 0 , depois, ENTER')
+                    if len(telef) == 8 or len(telef) == 9 or telef == '0':
+                        email = input('digite seu e-mail.'
+                                      'Se ja deixou o numero de celular, pode pular apertando 0 e ENTER')
+                        if "@" in email and '.com' in email:
+                            if telef == "0" and email == "0":
+                                print('houve um erro.Somente um dos campos pode estar em branco')
+                            else:
+                                abrir.write(f'tipo: {inc_ou_req_dict[inc_ou_req]}\n'
+                                            f'urgencia: {urgen_dict[urgen]}\n'
+                                            f'descricao: {descricao}\n'
+                                            f'numero de telefone: {telef}\n'
+                                            f'e-mail: {email}\n\n')
+                                abrir.close()
+                                sleep(0.5)
+                            print('dados registrados com sucesso.Para ver o resultado digite 1')
+                        else:
+                            print('o email fornecido nao parece valido')
+                    else:
+                        print('o numero de telefone nao parece valido, verifique se seguiu as instrucoes')
+                else:
+                    print('houve um problema com a descricao, o campo em questao nao pode ficar em branco')
+            else:
+                print('digite apenas um dos numeros acima')
+        else:
+            print('digite apenas um dos numeros acima')
+    elif escolha == 3:
+        print('sistema desligado')
+        break
+    else:
+        print('digite apenas um dos numeros acima')
